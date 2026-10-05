@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="100 classic riddles as flashcards. Tap to reveal the answer and track what you've solved.">
+<meta name="theme-color" content="#6d5dfc">
+<title>Riddle Flashcards</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#card">Skip to riddle</a>
+
+<header class="topbar">
+  <div class="topbar-row">
+    <h1 class="brand">🧩 Riddle Flashcards</h1>
+    <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+      <span aria-hidden="true">🌙</span>
+    </button>
+  </div>
+
+  <div class="progress" role="group" aria-label="Progress">
+    <div class="progress-track">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <p id="progressText" class="progress-text" aria-live="polite">0 / 0 solved</p>
+  </div>
+
+  <div class="topbar-row controls-row">
+    <label class="switch">
+      <input id="showSolved" type="checkbox">
+      <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+      <span class="switch-label">Show solved riddles</span>
+    </label>
+    <div class="topbar-actions">
+      <button id="shuffleBtn" class="ghost-btn" type="button">Shuffle</button>
+      <button id="resetBtn" class="ghost-btn danger" type="button">Reset progress</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+  <!-- Flashcard -->
+  <section id="cardWrap" class="card-wrap">
+    <button id="card" class="card" type="button" aria-live="polite" aria-describedby="flipHint">
+      <span class="card-inner">
+        <span class="card-face card-front">
+          <span class="card-head">
+            <span id="statusFront" class="badge">Unsolved</span>
+            <span id="counterFront" class="counter">1 of 100</span>
+          </span>
+          <span id="question" class="card-text"></span>
+          <span class="card-foot">Tap to reveal the answer</span>
+        </span>
+        <span class="card-face card-back">
+          <span class="card-head">
+            <span id="statusBack" class="badge">Unsolved</span>
+            <span id="counterBack" class="counter">1 of 100</span>
+          </span>
+          <span class="card-label">Answer</span>
+          <span id="answer" class="card-text answer-text"></span>
+          <span class="card-foot">Tap to flip back</span>
+        </span>
+      </span>
+    </button>
+    <p id="flipHint" class="sr-only">Press Enter or Space to flip the card between the riddle and its answer.</p>
+
+    <nav class="actions" aria-label="Riddle navigation">
+      <button id="prevBtn" class="nav-btn" type="button" aria-label="Previous riddle">‹ Prev</button>
+      <button id="solveBtn" class="solve-btn" type="button">Mark as solved</button>
+      <button id="nextBtn" class="nav-btn" type="button" aria-label="Next riddle">Next ›</button>
+    </nav>
+  </section>
+
+  <!-- Shown when every riddle is solved and solved ones are hidden -->
+  <section id="emptyState" class="empty hidden">
+    <p class="empty-emoji" aria-hidden="true">🎉</p>
+    <h2>You've solved them all!</h2>
+    <p>Nothing left in the deck. Show the solved ones to play again, or wipe your progress and start fresh.</p>
+    <div class="empty-actions">
+      <button id="emptyShowBtn" class="solve-btn" type="button">Show solved riddles</button>
+      <button id="emptyResetBtn" class="ghost-btn danger" type="button">Reset progress</button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="shortcuts">
+    <kbd>Space</kbd> flip · <kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>S</kbd> solved · <kbd>R</kbd> shuffle
+  </p>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="riddles.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
